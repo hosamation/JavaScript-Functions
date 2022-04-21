@@ -1,67 +1,42 @@
-console.log("Hello World");
+// Regular Function 1
+// let greeting = function() {
+//   return "Hello World";
+// }
 
-// Function
+// Arrow Function 1
+let greeting = () => "Hello World";
 
-function greetings(name) {
-  console.log(`Hello ${name}`);
+let message = greeting();
+console.log(message); // Hello World
+
+// Regular Function 2
+// let greet = function greetings(name) {
+//   return `Hello ${name}`;
+// }
+
+// Arrow Function 2
+let greet = name => `Hello ${name}`
+let msg = greet("John");
+console.log(msg); // Hello John
+
+let sum = (num1, num2) => num1 + num2;
+
+let output = sum(10, 5);
+console.log(output);
+
+/*  this
+    Refers to the owner of the function we are executing  
+    Unlike regular functions,
+    Arrow function do not have their own this value
+*/
+
+let msgThis = {
+  name: "John",
+  regularFunction: function() {
+    console.log(`Hello ${this.name}`);
+  },
+  arrowFunction: () => console.log(`Hi ${this.name}`)
 }
 
-greetings("John"); // Hello John
-
-
-// Function with Arguments
-function sum(num1, num2) {
-  return num1 + num2;
-}
-
-let result = sum(2, 3);
-console.log(result); // 5
-
-// The ARguments Object
-function printAll() {
-  for(let i = 0; i < arguments.length; i++) {
-    console.log(arguments[i]);
-  }
-}
-
-printAll(1, 2, 3, 4, 5); // 1 2 3 4 5
-printAll(10,20) //10 20
-
-// Function Scope
-function greeting() {
-  let message = "Hello";
-  let sayHi = function hi() {
-    console.log(message);
-  }
-  sayHi(); // Hello
-}
-greeting();
-// console.log(message); // ReferenceError: message is not defined
-
-// Block Scope
-let message = "Hello";
-if (message === "Hello") {
-  let message = "Inside if block";
-  console.log(message); // Inside if block
-}
-
-console.log(message); // Hello
-
-// Immediately Invoked Function Expression (IIFE)
-(function() {
-  console.log("Hello"); // Hello
-})();
-
-// Closures
-function setupCounter(val) {
-  return function counter() {
-    return val++;
-  }
-}
-
-let counter1 = setupCounter(0);
-console.log(counter1()); // 0
-console.log(counter1()); // 1
-
-let counter2 = setupCounter(10);
-console.log(counter2()); // 10
+msgThis.regularFunction();
+msgThis.arrowFunction();
